@@ -1,0 +1,39 @@
+---
+import { Image } from "astro:assets";
+import { AboutCopy } from "../components/AboutCopy";
+import aboutSilhouette from "../assets/about-silhouette.webp";
+
+const COPY =
+  "At Studio Base, we blend 35 years of creative firepower into branding, pitch decks, illustration, and motion work — all wrapped in a premium, futuristic aesthetic. From global brands to rising startups, we craft design experiences that feel like tomorrow.";
+---
+
+<section id="about" class="bg-ink py-28 md:py-40 px-6">
+  <div class="mx-auto max-w-[1200px] flex flex-col items-center">
+    <div class="label-mono" data-reveal>
+      <span class="text-accent mr-2">■</span>About Us
+    </div>
+
+    <div class="mt-10">
+      <AboutCopy client:visible text={COPY} />
+    </div>
+
+    <div
+      class="mt-14 md:mt-20 w-full max-w-[420px] overflow-hidden rounded-2xl"
+      data-reveal
+      data-parallax
+    >
+      <Image
+        src={aboutSilhouette}
+        alt="Dark silhouette against a vivid red backdrop"
+        class="w-full aspect-[3/4] object-cover scale-110"
+        data-zoom
+      />
+    </div>
+
+    <div class="mt-12" data-reveal>
+      <a href="#contact" class="btn-outline">
+        Work with us <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+---
+import Base from "../layouts/Base.astro";
+import { Header } from "../components/Header";
+import HeroSection from "../sections/HeroSection.astro";
+import About from "../sections/About.astro";
+import Works from "../sections/Works.astro";
+import Services from "../sections/Services.astro";
+import Logos from "../sections/Logos.astro";
+import ApproachSection from "../sections/ApproachSection.astro";
+import Journal from "../sections/Journal.astro";
+import Footer from "../sections/Footer.astro";
+import interior from "../assets/menu-interior.webp";
+---
+
+<Base title="Base Studio — Design Agency">
+  <Header client:load interiorSrc={interior.src} />
+
+  <main>
+    <HeroSection />
+    <About />
+    <Works />
+    <Services />
+    <Logos />
+    <ApproachSection />
+    <Journal />
+  </main>
+
+  <Footer />
+</Base>

@@ -1,0 +1,111 @@
+---
+import { Clock } from "../components/Misc";
+import { RollLink } from "../components/Roll";
+
+const NAV = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Works", href: "#works" },
+  { label: "Services", href: "#services" },
+  { label: "Journal", href: "#journal" },
+  { label: "Contact", href: "#contact" },
+];
+
+const SOCIAL = [
+  { label: "Instagram", href: "#" },
+  { label: "Twitter", href: "#" },
+  { label: "LinkedIn", href: "#" },
+  { label: "Dribbble", href: "#" },
+];
+
+---
+
+<footer id="contact" class="bg-void pt-20 md:pt-28">
+  <div class="mx-auto max-w-[1600px] px-6 md:px-12">
+    {/* top row */}
+    <div class="grid md:grid-cols-2 gap-12 pb-16 md:pb-24">
+      <div data-reveal>
+        <p class="font-display text-2xl md:text-[1.75rem] leading-snug font-medium tracking-tight max-w-[520px]">
+          Crafted with vision in the Netherlands. Powered by Figma, Framer,
+          Webflow &amp; wild ideas.
+        </p>
+        <p class="font-mono text-[12px] uppercase tracking-[0.12em] text-bone/60 mt-8">
+          © 2026 Studio Base.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-10" data-reveal>
+        <div>
+          <div class="font-mono text-[11px] uppercase tracking-[0.14em] text-bone/50 mb-6">
+            Navigation
+          </div>
+          <ul class="flex flex-col gap-3">
+            {NAV.map((n) => (
+              <li>
+                <RollLink
+                  href={n.href}
+                  className="font-mono text-[12px] uppercase tracking-[0.1em] text-bone hover:text-white"
+                >
+                  {n.label}
+                </RollLink>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <div class="font-mono text-[11px] uppercase tracking-[0.14em] text-bone/50 mb-6">
+            Social
+          </div>
+          <ul class="flex flex-col gap-3">
+            {SOCIAL.map((s) => (
+              <li>
+                <RollLink
+                  href={s.href}
+                  className="font-mono text-[12px] uppercase tracking-[0.1em] text-bone hover:text-white"
+                >
+                  {s.label}
+                </RollLink>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <div class="font-mono text-[11px] uppercase tracking-[0.14em] text-bone/50 mb-6">
+            Address
+          </div>
+          <ul class="flex flex-col gap-3 font-mono text-[12px] uppercase tracking-[0.1em] text-bone">
+            <li>Dublin Landings</li>
+            <li>North Dock</li>
+            <li>Dublin, Ireland</li>
+            <li class="pt-3">
+              <Clock client:visible />
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* giant wordmark */}
+  <div class="overflow-hidden px-2 select-none" aria-hidden="true">
+    <div
+      class="font-display font-bold tracking-tightest leading-[0.82] text-center text-[#ece7dd] whitespace-nowrap text-[clamp(3.5rem,14.5vw,15rem)]"
+      data-reveal
+    >
+      Studio&nbsp;Base
+    </div>
+  </div>
+
+  {/* bottom bar */}
+  <div class="border-t border-white/15 mt-4">
+    <div class="mx-auto max-w-[1600px] px-6 md:px-12 py-6 flex flex-col md:flex-row gap-4 items-center justify-between font-mono text-[11px] uppercase tracking-[0.12em] text-bone/60">
+      <span>Designed by Forx Studio</span>
+      <div class="flex flex-wrap gap-x-6 gap-y-2 justify-center">
+        <a href="#contact" class="hover:text-white">Terms and conditions</a>
+        <a href="#contact" class="hover:text-white">Privacy policy</a>
+        <a href="#contact" class="hover:text-white">Refund policy</a>
+        <a href="#home" class="hover:text-white">Back to top ↑</a>
+      </div>
+    </div>
+  </div>
+</footer>

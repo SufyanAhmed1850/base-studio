@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+@theme {
+  /* Base Studio design tokens */
+  --color-ink: #0d0d0d;          /* page background */
+  --color-void: #000000;         /* hero background */
+  --color-accent: #ba0000;       /* accent red, used sparingly */
+  --color-cell: #1a1a1a;         /* logo-cell dark background */
+  --color-bone: #e6e6e6;         /* secondary text */
+
+  --font-display: "Inter Tight", "Inter", system-ui, sans-serif;
+  --font-body: "Manrope", system-ui, sans-serif;
+  --font-mono: "Fragment Mono", "Geist Mono", ui-monospace, monospace;
+
+  --tracking-tightest: -0.02em;
+
+  --animate-marquee: marquee 32s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+html {
+  scroll-behavior: auto; /* Lenis owns smooth scrolling */
+}
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+body {
+  background: var(--color-ink);
+  color: #ffffff;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* ---- full-page film grain ---- */
+.grain {
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 90;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain-shift 0.9s steps(4) infinite;
+}
+@keyframes grain-shift {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-2%, 1%); }
+  50% { transform: translate(1%, -2%); }
+  75% { transform: translate(-1%, 2%); }
+  100% { transform: translate(2%, -1%); }
+}
+
+/* ---- vertical text-roll hover swap (nav / footer links) ---- */
+.roll {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  line-height: 1.2;
+}
+.roll-inner {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.45s cubic-bezier(0.76, 0, 0.24, 1);
+  will-change: transform;
+}
+.roll:hover .roll-inner,
+a:hover > .roll .roll-inner {
+  transform: translateY(-50%);
+}
+.roll-inner > span {
+  display: block;
+  white-space: nowrap;
+}
+@media (prefers-reduced-motion: reduce) {
+  .roll-inner { transition: none; }
+  .grain { animation: none; }
+}
+
+/* ---- outlined button ---- */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  padding: 1.1rem 2rem;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: transparent;
+  transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+}
+.btn-outline:hover {
+  background: #fff;
+  color: #0d0d0d;
+  border-color: #fff;
+}
+
+/* section label: ■ + mono uppercase */
+.label-mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-bone);
+}
+
+/* mask helper for word-rise reveals */
+.mask-line { overflow: hidden; display: block; }
+
+/* thin scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #0d0d0d; }
+::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 5px; }

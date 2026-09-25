@@ -1,0 +1,75 @@
+---
+import { Image } from "astro:assets";
+import flowers from "../assets/journal-flowers.webp";
+import purple from "../assets/journal-purple.webp";
+import boat from "../assets/journal-boat.webp";
+
+const POSTS = [
+  {
+    img: flowers,
+    alt: "Close-up of deep red flowers",
+    date: "Jun 6, 2026",
+    title: "Stop Marketing Like It's 2010 — Design-Driven Marketing Wins Now",
+  },
+  {
+    img: purple,
+    alt: "Abstract purple 3D curve",
+    date: "Jun 6, 2026",
+    title: "Framer Isn't Just a Tool — It's a Superpower for Fast-Moving Teams",
+  },
+  {
+    img: boat,
+    alt: "Empty seats on a boat with a scenic view",
+    date: "Jun 6, 2026",
+    title: "The Product Is the Brand — Why UX Design Is Your Competitive Edge",
+  },
+];
+---
+
+<section id="journal" class="bg-ink py-28 md:py-36 px-6 md:px-12">
+  <div class="mx-auto max-w-[1600px]">
+    {/* header row */}
+    <div class="flex items-center justify-between mb-12 md:mb-16" data-reveal>
+      <div class="label-mono">
+        <span class="text-accent mr-2">■</span>Our Journal
+      </div>
+      <a
+        href="#journal"
+        class="font-mono text-[12px] uppercase tracking-[0.1em] text-bone hover:text-white transition-colors"
+      >
+        <span class="roll">
+          <span class="roll-inner">
+            <span>See more →</span>
+            <span aria-hidden="true">See more →</span>
+          </span>
+        </span>
+      </a>
+    </div>
+
+    {/* 3-column cards */}
+    <div class="grid md:grid-cols-3 gap-8 md:gap-10">
+      {POSTS.map((post, i) => (
+        <article class="group" data-reveal data-reveal-delay={i * 0.08}>
+          <a href="#journal" class="block">
+            <div class="overflow-hidden rounded-2xl">
+              <Image
+                src={post.img}
+                alt={post.alt}
+                class="w-full aspect-[4/3] object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+            </div>
+            <div class="font-mono text-[12px] uppercase tracking-[0.12em] text-bone/70 mt-6">
+              {post.date}
+            </div>
+            <h5 class="font-display font-medium tracking-tight text-xl md:text-[1.4rem] leading-snug mt-3 group-hover:text-bone transition-colors">
+              {post.title}
+            </h5>
+            <div class="font-mono text-[12px] uppercase tracking-[0.12em] text-white mt-5 inline-block border-b border-white/40 pb-1 group-hover:border-accent group-hover:text-accent transition-colors">
+              Read more
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
